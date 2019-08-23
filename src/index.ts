@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
-import * as Express from "express";
-import { buildSchema } from "type-graphql";
+import Express from "express";
+import formatArgumentValidationError, { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { RegisterResolver } from "./modules/user/register";
 
@@ -10,7 +10,10 @@ const main = async () => {
   const schema = await buildSchema({
     resolvers: [RegisterResolver]
   });
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    formatError: formatArgumentValidationError as any
+  });
   const app = Express();
 
   apolloServer.applyMiddleware({ app });
