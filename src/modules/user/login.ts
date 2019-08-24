@@ -13,12 +13,12 @@ export class LoginResolver {
     @Ctx() ctx: MyContext
   ): Promise<User | null> {
     const user = await User.findOne({ where: { email } });
+
     if (!user) {
       return null;
     }
 
     const valid = bcrypt.compare(password, user.password);
-
     if (!valid) {
       return null;
     }
@@ -26,6 +26,7 @@ export class LoginResolver {
     if (!user.confirmed) {
       return null;
     }
+
     // If didn't get a cookie in devtools log Make sure the request.credentials: "include" in graphql playground
     ctx.req.session!.userId = user.id;
 
