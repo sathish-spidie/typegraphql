@@ -23,6 +23,9 @@ export class LoginResolver {
       return null;
     }
 
+    if (!user.confirmed) {
+      return null;
+    }
     // If didn't get a cookie in devtools log Make sure the request.credentials: "include" in graphql playground
     ctx.req.session!.userId = user.id;
 

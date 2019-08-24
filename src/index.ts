@@ -11,11 +11,17 @@ import { RegisterResolver } from "./modules/user/register";
 import { redis } from "./redis";
 import { LoginResolver } from "./modules/user/login";
 import { MeResolver } from "./modules/user/me";
+import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
 
 const main = async () => {
   await createConnection();
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver, MeResolver],
+    resolvers: [
+      RegisterResolver,
+      LoginResolver,
+      MeResolver,
+      ConfirmUserResolver
+    ],
     authChecker: ({ context: { req } }) => {
       if (!req.session!.userId) {
         return false;
