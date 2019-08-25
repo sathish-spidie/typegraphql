@@ -1,5 +1,5 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
-import { User } from "../../entity/User";
+import { Users123 } from "../../entity/User";
 import { redis } from "../../redis";
 import { v4 } from "uuid";
 import { sendEmail } from "../../utils/sendEmail";
@@ -9,7 +9,7 @@ import { ForgotPasswordPrefix } from "../../constant";
 export class ForgotPasswordResolver {
   @Mutation(() => Boolean)
   async forgotPassword(@Arg("email") email: string): Promise<boolean> {
-    const user = await User.findOne({ where: { email } });
+    const user = await Users123.findOne({ where: { email } });
 
     if (!user) {
       return false;

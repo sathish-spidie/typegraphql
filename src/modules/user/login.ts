@@ -2,34 +2,30 @@ import { Resolver, Mutation, Arg, Ctx } from "type-graphql";
 import bcrypt from "bcrypt";
 
 import { MyContext } from "../../types/Mycontext";
-import { User } from "../../entity/User";
+import { Users123 } from "../../entity/User";
 
 @Resolver()
 export class LoginResolver {
-  @Mutation(() => User, { nullable: true })
+  @Mutation(() => Users123, { nullable: true })
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
     @Ctx() ctx: MyContext
-  ): Promise<User | null> {
-    const user = await User.findOne({ where: { email } });
+  ): Promise<Users123 | null> {
+    const user = await Users123.findOne({ where: { email } });
 
     if (!user) {
       return null;
     }
 
-    const valid = bcrypt.compare(password, user.password);
-    if (!valid) {
-      return null;
+    const valid = await bcrypt.compare(password, user.password);
+
+    if (user.confirmed === true && valid === true) {
+      ctx.req.session!.userId = user.id;
+      return user;
     }
 
-    if (!user.confirmed) {
-      return null;
-    }
-
+    return null;
     // If didn't get a cookie in devtools log Make sure the request.credentials: "include" in graphql playground
-    ctx.req.session!.userId = user.id;
-
-    return user;
   }
 }

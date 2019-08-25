@@ -1,23 +1,23 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { ForgotPasswordPrefix } from "../../../constant";
-import { User } from "../../../entity/User";
+import { Users123 } from "../../../entity/User";
 import { redis } from "../../../redis";
 import bcrypt from "bcrypt";
 
 @Resolver()
 export class ChangePasswordResolver {
-  @Mutation(() => User, { nullable: true })
+  @Mutation(() => Users123, { nullable: true })
   async changePassword(
     @Arg("token") token: string,
     @Arg("newPassword") newPassword: string
-  ): Promise<User | null> {
+  ): Promise<Users123 | null> {
     const userId = await redis.get(ForgotPasswordPrefix + token);
 
     if (!userId) {
       return null;
     }
 
-    const user = await User.findOne({ id: parseInt(userId, 10) });
+    const user = await Users123.findOne({ id: parseInt(userId, 10) });
 
     console.log(user);
 
