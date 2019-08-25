@@ -4,7 +4,7 @@
   "host": "localhost",
   "port": 5432,
   "username": "shaj",
-  "password": "007S@thesh",
+  "password": "",
   "database": "typegraphql",
   "synchronize": true,
   "logging": true,
