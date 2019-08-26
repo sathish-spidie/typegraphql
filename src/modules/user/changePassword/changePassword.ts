@@ -3,7 +3,7 @@ import { ForgotPasswordPrefix } from "../../../constant";
 import { Users123 } from "../../../entity/User";
 import { redis } from "../../../redis";
 import bcrypt from "bcrypt";
-import { ChangePasswordInput } from "./changeInputType";
+import { ChangePasswordInput } from "./ChangeInputType";
 import { MyContext } from "../../../types/Mycontext";
 
 @Resolver()

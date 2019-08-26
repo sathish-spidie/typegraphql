@@ -1,9 +1,9 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
-import { Users123 } from "../../entity/User";
-import { redis } from "../../redis";
+import { Users123 } from "../../../entity/User";
+import { redis } from "../../../redis";
 import { v4 } from "uuid";
-import { sendEmail } from "../../utils/sendEmail";
-import { ForgotPasswordPrefix } from "../../constant";
+import { sendEmail } from "../../../utils/sendEmail";
+import { ForgotPasswordPrefix } from "../../../constant";
 
 @Resolver()
 export class ForgotPasswordResolver {

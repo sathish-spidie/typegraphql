@@ -1,11 +1,11 @@
 import { Resolver, Query, Mutation, Arg, UseMiddleware } from "type-graphql";
 import bcrypt from "bcrypt";
-import { Users123 } from "../../entity/User";
-import { RegisterInput } from "./register/RegisterInputs";
-import { isAuth } from "../middleware/isAuth";
-import { logger } from "../middleware/logger";
-import { sendEmail } from "../../utils/sendEmail";
-import { createConfirmUrl } from "../../utils/createConfrimUrl";
+import { Users123 } from "../../../entity/User";
+import { RegisterInput } from "./RegisterInputs";
+import { isAuth } from "../../middleware/isAuth";
+import { logger } from "../../middleware/logger";
+import { sendEmail } from "../../../utils/sendEmail";
+import { createConfirmUrl } from "../../../utils/createConfrimUrl";
 
 @Resolver()
 export class RegisterResolver {
