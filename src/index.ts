@@ -2,24 +2,17 @@ import "reflect-metadata";
 import "dotenv/config";
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import formatArgumentValidationError, { buildSchema } from "type-graphql";
+import formatArgumentValidationError from "type-graphql";
 import { createConnection } from "typeorm";
 import connectRedis from "connect-redis";
 import session from "express-session";
 import cors from "cors";
 import { redis } from "./redis";
+import { genSchema } from "./utils/GenSchema";
 
 const main = async () => {
   await createConnection();
-  const schema = await buildSchema({
-    resolvers: [__dirname + "/modules/**/*.ts"],
-    authChecker: ({ context: { req } }) => {
-      if (!req.session!.userId) {
-        return false;
-      }
-      return true;
-    }
-  });
+  const schema = await genSchema();
   const apolloServer = new ApolloServer({
     schema,
     formatError: formatArgumentValidationError as any,

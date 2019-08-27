@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { Field, ObjectType, ID, Root } from "type-graphql";
 
 @ObjectType()
-@Entity()
-export class Users123 extends BaseEntity {
+@Entity('users')
+export class User extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,7 +27,7 @@ export class Users123 extends BaseEntity {
   confirmed: boolean;
 
   @Field()
-  name(@Root() parent: Users123): string {
+  name(@Root() parent: User): string {
     return `${parent.firstName} ${parent.lastName}`;
   }
   //   @Column("bool", { default: false })

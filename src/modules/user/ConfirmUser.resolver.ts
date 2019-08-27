@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
-import { Users123 } from "../../../entity/User";
-import { redis } from "../../../redis";
-import { ConfirmUserPrefix } from "../../../constant";
+import { User } from "../../entity/User";
+import { redis } from "../../redis";
+import { ConfirmUserPrefix } from "../../constant";
 
 @Resolver()
 export class ConfirmUserResolver {
@@ -11,7 +11,7 @@ export class ConfirmUserResolver {
     if (!userId) {
       return false;
     }
-    await Users123.update({ id: parseInt(userId, 10) }, { confirmed: true });
+    await User.update({ id: parseInt(userId, 10) }, { confirmed: true });
     await redis.del(token);
 
     return true;

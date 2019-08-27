@@ -4,13 +4,13 @@ import {
   registerDecorator,
   ValidationOptions
 } from "class-validator";
-import { Users123 } from "../../../entity/User";
+import { User } from "../../../entity/User";
 
 @ValidatorConstraint({ name: "customText", async: true })
 export class IsEmailAlreadyExistConstraint
   implements ValidatorConstraintInterface {
   validate(email: string) {
-    return Users123.findOne({ where: { email } }).then(user => {
+    return User.findOne({ where: { email } }).then(user => {
       if (user) {
         return false;
       }
