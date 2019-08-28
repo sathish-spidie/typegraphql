@@ -1,5 +1,5 @@
 Arguments: 
-  /home/shaj/.nvm/versions/node/v12.8.0/bin/node /usr/share/yarn/bin/yarn.js add -D @types/faker faker
+  /home/shaj/.nvm/versions/node/v12.8.0/bin/node /usr/share/yarn/bin/yarn.js add graphql-upload
 
 PATH: 
   /home/shaj/.nvm/versions/node/v12.8.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/shaj/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/shaj/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/shaj/AppData/Local/GitHubDesktop/bin:/snap/bin
@@ -14,7 +14,8 @@ Platform:
   linux x64
 
 Trace: 
-  Error: ENOENT: no such file or directory, scandir '/mnt/d/TypeGraphql/node_modules/faker/lib/locales/de_AT'
+  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:60:26)
 
 npm manifest: 
   {
@@ -50,6 +51,7 @@ npm manifest:
       "@types/cors": "^2.8.6",
       "@types/express": "^4.17.1",
       "@types/express-session": "^1.15.14",
+      "@types/faker": "^4.1.5",
       "@types/graphql": "^14.2.3",
       "@types/ioredis": "^4.0.15",
       "@types/jest": "^24.0.18",
@@ -66,7 +68,7 @@ npm manifest:
     "scripts": {
       "start": "nodemon --exec ts-node src/index.ts",
       "db:setup": "ts-node ./src/test-utils/setup.ts",
-      "test": "npm run db:setup && jest"
+      "test": "npm run db:setup && jest --watch"
     }
   }
 
@@ -543,6 +545,11 @@ Lockfile:
       "@types/body-parser" "*"
       "@types/express-serve-static-core" "*"
       "@types/serve-static" "*"
+  
+  "@types/faker@^4.1.5":
+    version "4.1.5"
+    resolved "https://registry.yarnpkg.com/@types/faker/-/faker-4.1.5.tgz#8f620f9c9a67150aa0a32b4e8a407da43fca61d4"
+    integrity sha512-YSDqoBEWYGdNk53xSkkb6REaUaVSlIjxIAGjj/nbLzlZOit7kUU+nA2zC2qQkIVO4MQ+3zl4Sz7aw+kbpHHHUQ==
   
   "@types/fs-capacitor@*":
     version "2.0.0"
