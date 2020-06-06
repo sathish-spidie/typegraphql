@@ -5,7 +5,7 @@
   "author": "sathish-spidie <sathishshaj9484@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "apollo-server-express": "^2.8.2",
+    "apollo-server-express": "^2.14.2",
     "bcrypt": "^3.0.6",
     "class-validator": "^0.10.0",
     "connect-redis": "^3.4.2",
