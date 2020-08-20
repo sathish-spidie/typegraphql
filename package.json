@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^2.8.2",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "class-validator": "^0.10.0",
     "connect-redis": "^3.4.2",
     "cors": "^2.8.5",
